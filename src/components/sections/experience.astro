@@ -1,0 +1,54 @@
+---
+import SectionHeader from "../section-header.astro";
+
+interface Experience {
+  companyName: string;
+  startYear: number;
+  endYear: number | "Currently";
+  description: string | HTMLElement;
+}
+
+const experienceData = [
+  {
+    companyName: "InovenTI",
+    startYear: 2024,
+    endYear: "Currently",
+    description: `
+        I work as a fullstack intern
+        developing solutions in .NET and Javascript
+      `,
+  },
+] as Experience[];
+---
+
+<section id="experience" class="text-white w-full">
+  <SectionHeader text="Experience" />
+  <div class="flex items-center justify-center md:px-40 w-full">
+    <div class="mt-20">
+      <div class="flex flex-col items-center">
+        <div class="p-10 border-4 border-red-500 rounded-full"></div>
+        <div class="h-44 border border-red-500 w-0"></div>
+      </div>
+      {
+        experienceData.map(
+          ({ companyName, startYear, endYear, description }) => {
+            return (
+              <div class="flex flex-col items-center justify-center my-1">
+                <div class="w-1/2">
+                  <div class="flex flex-col">
+                    <span class="text-3xl text-red-500 font-bold">
+                      {companyName}
+                    </span>
+                    <span class="text-xs opacity-60 uppercase">{`${startYear} - ${endYear}`}</span>
+                  </div>
+                  <p class="text-sm">{description}</p>
+                </div>
+                <div class="h-44 border border-red-500 w-0" />
+              </div>
+            );
+          }
+        )
+      }
+    </div>
+  </div>
+</section>

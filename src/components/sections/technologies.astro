@@ -1,0 +1,123 @@
+---
+import SectionHeader from "../section-header.astro";
+
+const baseIcons = "/public/icons";
+const technologies = [
+  {
+    section: "Frontend",
+    tech: [
+      {
+        name: "React",
+        icon: baseIcons + "/react-icon.png",
+      },
+      {
+        name: "Tailwind",
+        icon: baseIcons + "/tailwind-icon.png",
+      },
+      {
+        name: "Jquery",
+        icon: baseIcons + "/jquery-icon.png",
+      },
+      {
+        name: "Astro",
+        icon: baseIcons + "/astro-icon.png",
+      },
+    ],
+  },
+  {
+    section: "Backend",
+    tech: [
+      {
+        name: ".NET Core",
+        icon: baseIcons + "/dotnet-icon.png",
+      },
+      {
+        name: "NestJS",
+        icon: baseIcons + "/nest-icon.png",
+      },
+      {
+        name: "Java Spring",
+        icon: baseIcons + "/spring-icon.svg",
+      },
+      {
+        name: "ExpressJS",
+        icon: baseIcons + "/express-icon.png",
+      },
+    ],
+  },
+  {
+    section: "Databases",
+    tech: [
+      {
+        name: "PostgreSQL",
+        icon: baseIcons + "/postgres-icon.png",
+      },
+      {
+        name: "MySQL",
+        icon: baseIcons + "/mysql-icon.png",
+      },
+      {
+        name: "SQL Server",
+        icon: baseIcons + "/mssqls-icon.png",
+      },
+      {
+        name: "MongoDB",
+        icon: baseIcons + "/mongodb-icon.png",
+      },
+    ],
+  },
+  {
+    section: "Tools",
+    tech: [
+      {
+        name: "Git",
+        icon: baseIcons + "/git-icon.png",
+      },
+      {
+        name: "Docker",
+        icon: baseIcons + "/docker-icon.png",
+      },
+      {
+        name: "Bash/Zsh",
+        icon: baseIcons + "/bash-icon.png",
+      },
+      {
+        name: "Visual Studio",
+        icon: baseIcons + "/vs-icon.png",
+      },
+    ],
+  },
+];
+---
+
+<section class="mt-24 text-white" id="technologies">
+  <SectionHeader text={"Technologies"} />
+  <div class="mt-12 p-10 flex lg:flex-row flex-col">
+    {
+      technologies.map((e) => {
+        return (
+          <div class="flex items-center flex-col mb-10">
+            <span class="text-3xl text-red-500 mb-10 mt-12 font-bold">
+              {e.section}
+            </span>
+            <div class="flex justify-center lg:justify-between items-center flex-wrap w-full md:w-3/4 xl:gap-3 gap-1">
+              {e.tech.map(({ name, icon }) => {
+                return (
+                  <div class="group technology flex flex-col items-center justify-center opacity-50 hover:opacity-100 gap-1">
+                    <img alt={`icon for ${name}`}
+                      class="group-hover:-translate-y-2 transition-all xl:w-24 md:w-20 w-16",
+                      src={icon}
+                    />
+                    <span class="group-hover:opacity-100 tech-name text-lg opacity-0 transition-all">
+                      {name}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</section>

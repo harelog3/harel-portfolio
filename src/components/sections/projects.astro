@@ -1,0 +1,131 @@
+---
+import SectionHeader from "../section-header.astro";
+
+const projects = [
+  {
+    projectName: "Dates App",
+    thumbnail: "/public/thumbnails/da_thumbnail.jpeg",
+    liveLink: "https://dates-app.onrender.com",
+    repoLink: "https://github.com/Harel-ITESO/dates_app",
+    description: `School project, the goal was to develop a complex backend for a web application. This app resembles apps like Tinder or Bumble,
+      with a 'match' and 'like' systems, aswell as real time chat using WebSockets.
+      `,
+    technologies: ["ExpressJS", "WebSockets", "PostgreSQL"],
+  },
+  {
+    projectName: "Flappy Bird",
+    thumbnail: "/public/thumbnails/fb_thumbnail.png",
+    liveLink: "",
+    repoLink: "https://github.com/Harel-ITESO/FlappyBird",
+    description: `OOP project, using Java with the Swing API we made a replica of the famous mobile game 
+    'Flappy Bird'. This project uses a lot of OOP principles like singleton, inheritance, dependency injection, etc.
+    `,
+    technologies: ["Java"],
+  },
+  {
+    projectName: "Links in Bio",
+    thumbnail: "/public/thumbnails/bl_thumbnail.png",
+    repoLink: "",
+    liveLink: "https://harelog3.github.io/bio-links/",
+    description: `Simple project made for displaying my social links, similar to a 'LinkTree' and based on the design made by 'Craftzdog'. This 
+    project is done using basic HTML and CSS with modern looks and animations.
+    `,
+    technologies: ["HTML", "CSS"],
+  },
+  {
+    projectName: "ITESO's web application",
+    thumbnail: "/public/thumbnails/si_thumbnail.png",
+    repoLink: "https://github.com/Harel06533/servicios-iteso",
+    liveLink: "",
+    description: `School project for learning web development, this projects is a recreation of my college's web application UI which some
+    students claim to be hard to travel on.
+    `,
+    technologies: ["Express", "HTML", "CSS", "Sass"],
+  },
+  {
+    projectName: "Judge My Portfolio",
+    thumbnail: "/public/thumbnails/jmp_thumbnail.png",
+    repoLink: "https://github.com/harelog3/judge-my-portfolio",
+    liveLink: "",
+    description: `WIP Project for developers to post their portfolios, here they'll be able to recieve feedback from other users, like ratings, 
+    comments, etc. They will also be able to login in using Google or Github
+    `,
+    technologies: ["Express", "React", "JWT", "OAuth"],
+  },
+];
+---
+
+<section id="projects" class="text-white mt-20">
+  <SectionHeader text="Projects" />
+  <div
+    class="mt-10 md:px-10 flex flex-col items-center lg:gap-14 gap-8 lg:flex-row flex-wrap"
+  >
+    {
+      projects.map(
+        ({
+          projectName,
+          thumbnail,
+          liveLink,
+          repoLink,
+          description,
+          technologies,
+        }) => {
+          return (
+            <>
+              <div class="rounded-lg p-4 border-white border-2 sm:w-80 flex flex-col">
+                <div class="">
+                  <img
+                    src={thumbnail}
+                    alt={`${projectName} thumbnail`}
+                    class="overflow-hidden object-cover rounded border-white border-2 w-full h-36"
+                  />
+                </div>
+                <div class="mt-3 flex justify-between items-center">
+                  <span class="text-2xl text-red-500 font-bold">
+                    {projectName}
+                  </span>
+                  <div class="text-2xl flex gap-4">
+                    {repoLink ? (
+                      <a
+                        target="_blank"
+                        href={repoLink}
+                        class="rounded-full flex items-center justify-center w-9 h-9 bg-red-500 hover:bg-red-600 transition-all"
+                      >
+                        <span class="fa-brands fa-github" />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                    {liveLink ? (
+                      <a
+                        href={liveLink}
+                        target="_blank"
+                        class="rounded-full flex items-center justify-center w-9 h-9 bg-red-500 hover:bg-red-600 transition-all"
+                      >
+                        <span class="fa-solid fa-link " />
+                      </a>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                </div>
+                <div class="opacity-60 text-sm mt-2">
+                  <span class="text-wrap">{description}</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-3 text-xs ">
+                  {technologies.map((t) => {
+                    return (
+                      <div class="py-1 px-2 rounded-full bg-white bg-opacity-10">
+                        <span class="opacity-70">{t}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </>
+          );
+        }
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Main from "../components/sections/main.astro";
+import AboutMe from "../components/sections/about-me.astro";
+import Technologies from "../components/sections/technologies.astro";
+import Experience from "@/components/sections/experience.astro";
+import Projects from "@/components/sections/projects.astro";
+---
+
+<Layout>
+  <header class="relative">
+    <Navbar />
+  </header>
+  <main class="py-8 px-16 min-h-screen">
+    <Main />
+    <AboutMe />
+    <Technologies />
+    <Experience />
+    <Projects />
+  </main>
+  <footer class="mt-52 border-t border-t-white border-opacity-25 sm:mx-24 mx-2">
+    <div class="p-5 text-center">
+      <span class="text-white opacity-65"
+        >Copyright &copy; 2024 | All rights reserverd | Harel Olguín</span
+      >
+    </div>
+  </footer>
+</Layout>

@@ -1,0 +1,52 @@
+---
+import SectionHeader from "../section-header.astro";
+---
+
+<section id="about-me" class="text-white">
+  <SectionHeader text={"About Me"} />
+  <div
+    class="mt-11 flex flex-col lg:flex-row gap-2 xl:gap-80 lg:gap-32 md:gap-11 sm:gap-1"
+  >
+    <div>
+      <p class="text-lg">
+        My name is <span class="italic">Harel</span>, i'm a <span
+          class="text-red-500 italic">Software Engineer</span
+        > student from Mexico 🇲🇽 with a strong focus in <strong
+          class="italic text-red-500">Backend</strong
+        > development. I have experience working in <strong class="text-red-500"
+          >fullstack</strong
+        > web applications using the most demanded techonologies in the market, such
+        as <span class="font-bold text-red-500">.NET</span>,
+        <span class="font-bold text-red-500">React</span>, <span
+          class="font-bold text-red-500">Spring</span
+        > or
+        <span class="font-bold text-red-500">Node</span>.
+      </p>
+      <p class="text-lg mt-5">
+        I also have experience working in collaborative enviroments using <span
+          class="italic text-red-500">agile</span
+        > frameworks like <span class="text-red-500">Scrum</span>, there my
+        contribuitions are submitted in a <strong class="text-red-500"
+          >Git</strong
+        > repository, where after testing, i would recieve feedback and then i will
+        make corrections to deliver quality solutions.
+      </p>
+
+      <p class="mt-5 text-lg">
+        If you are interested in knowing more about me, check out my <a
+          href="https://harelog3.github.io/bio-links/"
+          target="_blank"
+          class="text-red-500 underline font-bold">social links</a
+        >.
+      </p>
+    </div>
+    <div class="flex-grow w-full self-center">
+      <img
+        src="/harelimage.jpg"
+        alt="harel image"
+        width="400"
+        class="lg:w-full mt-3 lg:mt-0 md:w-3/4 sm:w-full lg:rounded-full outline outline-red-500"
+      />
+    </div>
+  </div>
+</section>
