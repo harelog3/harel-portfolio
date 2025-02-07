@@ -1,12 +1,33 @@
 ---
 import SectionHeader from "../section-header.astro";
+import {
+  type Duration,
+  type Month,
+  format,
+  intervalToDuration,
+} from "date-fns";
+
+enum Months {
+  January,
+  February,
+  March,
+  April,
+  May,
+  June,
+  July,
+  August,
+  September,
+  October,
+  November,
+  Dicember,
+}
 
 interface Experience {
   companyName: string;
-  startMonth: string;
+  startMonth: Month;
   startYear: number;
-  endYear: number | "Currently";
-  endMonth?: string;
+  endYear?: number;
+  endMonth?: Month;
   description: string | HTMLElement;
 }
 
@@ -14,9 +35,9 @@ const experienceData = [
   {
     companyName: "InovenTI",
     startYear: 2024,
-    startMonth: "January",
+    startMonth: Months.January,
     endYear: 2024,
-    endMonth: "July",
+    endMonth: Months.July,
     description: `
         I worked as a fullstack intern
         developing solutions in .NET and Javascript
@@ -24,15 +45,67 @@ const experienceData = [
   },
   {
     companyName: "Toshiba GCS",
-    startMonth: "July",
+    startMonth: Months.July,
     startYear: 2024,
-    endYear: "Currently",
+    endMonth: Months.February,
+    endYear: 2025,
     description: `
-      I work in Toshiba Global Commerce Solutions as an intern helping in 
-      testing, frontend and backend development to the engineers in the project
+      I worked in Toshiba Global Commerce Solutions as an intern helping in 
+      testing frontend and backend development with the engineers in the project
       `,
   },
+
+  {
+    companyName: "Oracle",
+    startMonth: Months.February,
+    startYear: 2025,
+    description:
+      "I currently work as a backend engineer intern at Oracle. I develop multiple solutions using Java for a distribution system.",
+  },
 ] as Experience[];
+
+// Returns [date, dateIsCurrent]
+function getDateValues(month?: Month, year?: number) {
+  if (!month || !year) return [new Date(), true];
+  return [new Date(year, month, 1), false];
+}
+
+function generateDurationString(duration: Duration) {
+  const months = duration.months!; // Let's say, i always mork more than a month lol
+  let durationString = "";
+
+  if (duration.years) {
+    const years = duration.years;
+    if (years === 1) durationString += "1 year, ";
+    else durationString += `${years} years, `;
+  }
+
+  if (months === 1) durationString += "1 month";
+  else durationString += `${months || 0} months`;
+  return durationString;
+}
+
+function generateDateDisplayData(
+  startMonth: Month,
+  startYear: number,
+  endMonth?: Month,
+  endYear?: number
+): string {
+  const startDate = new Date(startYear, startMonth, 1);
+  const [endDate, dateIsCurrent] = getDateValues(endMonth, endYear);
+
+  const duration = intervalToDuration({
+    start: startDate,
+    end: endDate as Date,
+  });
+
+  const startDateString = `${format(startDate, "LLLL")} ${startDate.getFullYear()}`;
+  const endDateString = dateIsCurrent
+    ? "Currently"
+    : `${format(endDate as Date, "LLLL")} ${(endDate as Date).getFullYear()}`;
+
+  return `${startDateString} - ${endDateString} (${generateDurationString(duration)})`;
+}
 ---
 
 <section id="experience" class="text-white w-full">
@@ -60,7 +133,14 @@ const experienceData = [
                     <span class="text-3xl text-red-500 font-bold">
                       {companyName}
                     </span>
-                    <span class="text-xs opacity-60 uppercase">{`${startMonth} ${startYear} - ${endMonth || ""} ${endYear}`}</span>
+                    <span class="text-xs opacity-60 uppercase">
+                      {generateDateDisplayData(
+                        startMonth,
+                        startYear,
+                        endMonth,
+                        endYear
+                      )}
+                    </span>
                   </div>
                   <p class="text-sm">{description}</p>
                 </div>
