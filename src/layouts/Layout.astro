@@ -1,35 +1,47 @@
 ---
+import Navbar from "../components/ui/navbar/Navbar.astro";
+import NavbarDock from "../components/ui/navbar/NavbarDock.astro";
+import "../styles/global.css";
+import "@fontsource-variable/fira-code";
 
+const lang = Astro.currentLocale;
+const { title } = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Harel - Portfolio</title>
-    <link rel="icon" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body class="bg-black">
-    <slot />
-    <script
-      is:inline
-      src="https://kit.fontawesome.com/e0497758cb.js"
-      crossorigin="anonymous"></script>
-  </body>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: "Roboto Mono", monospace;
-      font-optical-sizing: auto;
-    }
-  </style>
+<html lang={lang}>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{title}</title>
+    </head>
+    <body class="relative">
+        <header class="sticky top-0 z-50 flex justify-evenly items-center">
+            <div class="hidden md:block"></div>
+
+            <!-- Navbar for big screens -->
+            <div class="w-full md:block hidden">
+                <Navbar />
+            </div>
+
+            <!-- Navbar dock for mobile screens -->
+            <div class="w-full md:hidden block text-center">
+                <NavbarDock />
+            </div>
+
+            <div class="pr-10">
+                <h4>Hello</h4>
+            </div>
+        </header>
+        <main class="h-screen">
+            <slot />
+        </main>
+    </body>
 </html>
+
+<style is:global>
+    body {
+        font-family: "Fira Code Variable", monospace;
+    }
+</style>
