@@ -1,0 +1,86 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import LangSelector from "./LangSelector.astro";
+
+interface LinkItem {
+    href: string;
+    route?: string;
+    label: string;
+}
+
+interface Props {
+    links: LinkItem[];
+    currentLocale: string;
+    normalizedPath: string;
+    currentTitle: string;
+}
+
+const { links, currentLocale, normalizedPath, currentTitle } = Astro.props;
+
+const mobileMenuLabel =
+    currentLocale === "es" ? "Abrir menu de navegacion" : "Open navigation menu";
+
+const isActive = (href: string) => {
+    if (href === "/") return normalizedPath === "/";
+    return normalizedPath === href || normalizedPath.startsWith(`${href}/`);
+};
+---
+
+<div class="relative w-full max-w-lg sm:hidden">
+    <div
+        class="glass-nav ring-earth-900/10 shadow-earth-900/5 flex items-center justify-between rounded-full px-2 py-1.5 shadow-xl ring-1"
+    >
+        <details class="group relative">
+            <summary
+                class="text-earth-900 ring-earth-900/10 hover:text-primary hover:bg-earth-100/70 dark:text-earth-50 dark:hover:bg-earth-800/80 dark:hover:text-white flex h-9 w-9 cursor-pointer list-none items-center justify-center rounded-full ring-1 transition-all duration-200 [&::-webkit-details-marker]:hidden"
+                aria-label={mobileMenuLabel}
+            >
+                <span class="sr-only">{mobileMenuLabel}</span>
+                <span class="relative h-3.5 w-4">
+                    <span
+                        class="bg-current absolute top-0 left-0 h-0.5 w-4 origin-center rounded-full transition-transform duration-200 group-open:translate-y-[0.42rem] group-open:rotate-45"
+                    ></span>
+                    <span
+                        class="bg-current absolute top-[0.42rem] left-0 h-0.5 w-4 rounded-full transition-opacity duration-200 group-open:opacity-0"
+                    ></span>
+                    <span
+                        class="bg-current absolute top-[0.84rem] left-0 h-0.5 w-4 origin-center rounded-full transition-transform duration-200 group-open:-translate-y-[0.42rem] group-open:-rotate-45"
+                    ></span>
+                </span>
+            </summary>
+
+            <div
+                class="bg-base/95 ring-earth-900/10 dark:bg-earth-800/95 dark:ring-white/10 absolute top-[calc(100%+0.5rem)] left-0 z-50 flex w-[min(18rem,calc(100vw-1rem))] flex-col gap-1 rounded-2xl p-1.5 opacity-0 shadow-xl ring-1 backdrop-blur-md transition duration-200 -translate-y-1.5 pointer-events-none group-open:translate-y-0 group-open:opacity-100 group-open:pointer-events-auto"
+            >
+                {
+                    links.map((link) => (
+                        <a
+                            href={
+                                link.route
+                                    ? getRelativeLocaleUrl(currentLocale, link.route)
+                                    : getRelativeLocaleUrl(currentLocale)
+                            }
+                            aria-current={isActive(link.href) ? "page" : undefined}
+                            class:list={[
+                                "rounded-xl px-3 py-2.5 text-sm font-semibold transition-all duration-200",
+                                isActive(link.href)
+                                    ? "bg-primary shadow-primary/25 text-white shadow-md"
+                                    : "text-earth-900 hover:text-primary hover:bg-earth-100/80 dark:text-earth-50 dark:hover:bg-earth-700/70 dark:hover:text-white",
+                            ]}
+                        >
+                            {link.label}
+                        </a>
+                    ))
+                }
+            </div>
+        </details>
+
+        <p
+            class="text-earth-900 dark:text-earth-50 min-w-0 flex-1 px-2 text-center text-sm font-semibold truncate"
+        >
+            {currentTitle}
+        </p>
+
+        <LangSelector />
+    </div>
+</div>

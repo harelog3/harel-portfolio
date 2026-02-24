@@ -1,0 +1,25 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+import Navbar from "../components/navbar/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang={Astro.currentLocale ?? "en"}>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro</title>
+        <ClientRouter />
+    </head>
+    <body class="bg-base flex h-screen flex-col">
+        <Navbar />
+        <main class="flex-1 pt-24" transition:animate="none">
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>

@@ -1,26 +1,25 @@
 {
-  "name": "harel-portfolio",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/sitemap": "^3.6.0",
-    "@fontsource-variable/fira-code": "^5.2.7",
-    "@lucide/astro": "^0.561.0",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.16.6",
-    "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.18"
-  },
-  "devDependencies": {
-    "@typescript-eslint/parser": "^8.50.0",
-    "eslint": "^9.39.2",
-    "eslint-plugin-astro": "^1.5.0"
-  },
-  "packageManager": "pnpm@10.26.0+sha512.3b3f6c725ebe712506c0ab1ad4133cf86b1f4b687effce62a9b38b4d72e3954242e643190fc51fa1642949c735f403debd44f5cb0edd657abe63a8b6a7e1e402"
+    "name": "",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@astrojs/vue": "^5.1.4",
+        "@fontsource-variable/fira-code": "^5.2.7",
+        "@fontsource/inter": "^5.2.8",
+        "@lucide/astro": "^0.575.0",
+        "@tailwindcss/vite": "^4.2.1",
+        "astro": "^5.17.1",
+        "tailwindcss": "^4.2.1"
+    },
+    "devDependencies": {
+        "prettier": "3.8.1",
+        "prettier-plugin-astro": "0.14.1",
+        "prettier-plugin-tailwindcss": "^0.7.2"
+    }
 }

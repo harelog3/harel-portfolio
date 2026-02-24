@@ -1,1 +1,60 @@
 @import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
+@import "@fontsource/inter/900.css";
+@import "@fontsource-variable/fira-code";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: #2d5a27;
+    --color-secondary: #c65d3b;
+    --color-accent: #c65d3b;
+
+    --color-base: #fcfaf7;
+    --color-base-dark: #1a1c19;
+
+    --color-earth-50: #fcfaf7;
+    --color-earth-100: #f2f3ee;
+    --color-earth-600: #5b6354;
+    --color-earth-700: #444a3f;
+    --color-earth-800: #2d302a;
+    --color-earth-900: #1a1c19;
+
+    --font-display: "Inter", sans-serif;
+    --font-mono: "Fira Code", monospace;
+
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1.25rem;
+}
+
+body {
+    font-family: var(--font-display);
+    background-color: var(--color-base);
+    color: var(--color-earth-900);
+}
+
+.dark body {
+    background-color: var(--color-base-dark);
+    color: var(--color-earth-50);
+}
+
+.code-font {
+    font-family: var(--font-mono);
+}
+
+.glass-nav {
+    background: color-mix(in srgb, var(--color-base) 70%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-primary) 12%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.dark .glass-nav {
+    background: color-mix(in srgb, var(--color-base-dark) 70%, transparent);
+    border: 1px solid color-mix(in srgb, white 8%, transparent);
+}
