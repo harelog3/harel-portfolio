@@ -1,0 +1,81 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    name: string;
+    level: string;
+    description: string;
+    tags?: string[];
+    logoSrc?: string;
+    logoAlt?: string;
+    loading?: "eager" | "lazy";
+}
+
+const {
+    name,
+    level,
+    description,
+    tags = [],
+    logoSrc,
+    logoAlt = "",
+    loading = "eager",
+} =
+    Astro.props as Props;
+---
+
+<article
+    class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex h-full flex-col gap-5 rounded-3xl p-6 ring-1 transition-all duration-200 hover:-translate-y-0.5 hover:ring-primary/35 sm:p-7"
+>
+    <div class="flex items-start justify-between gap-3">
+        <div
+            class="bg-earth-100 dark:bg-earth-800 text-earth-500 dark:text-earth-200 ring-earth-200 dark:ring-earth-700 flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl ring-1"
+            aria-hidden={logoSrc ? undefined : "true"}
+        >
+            <!-- Logo placeholder is intentionally kept for future brand logos via <Image />. -->
+            {
+                logoSrc ? (
+                    <Image
+                        src={logoSrc}
+                        alt={logoAlt}
+                        width={48}
+                        height={48}
+                        class="h-full w-full object-contain p-2"
+                        loading={loading}
+                    />
+                ) : (
+                    <span class="text-[10px] font-semibold tracking-[0.15em] uppercase"
+                        >Logo</span
+                    >
+                )
+            }
+        </div>
+        <span
+            class="text-earth-500 dark:text-earth-300 text-[11px] font-semibold tracking-[0.16em] uppercase"
+        >
+            {level}
+        </span>
+    </div>
+
+    <div class="space-y-2.5">
+        <h3 class="text-earth-900 dark:text-earth-50 text-3xl leading-none font-bold tracking-tight">
+            {name}
+        </h3>
+        <p class="text-earth-700 dark:text-earth-100/75 text-sm leading-relaxed">
+            {description}
+        </p>
+    </div>
+
+    {
+        tags.length > 0 && (
+            <div class="mt-auto flex flex-wrap gap-2 pt-1">
+                {tags.map((tag) => (
+                    <span
+                        class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-2 py-1 text-[10px] font-semibold tracking-tight"
+                    >
+                        {tag}
+                    </span>
+                ))}
+            </div>
+        )
+    }
+</article>

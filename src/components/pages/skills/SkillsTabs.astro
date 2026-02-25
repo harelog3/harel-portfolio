@@ -1,0 +1,149 @@
+---
+import SkillCard from "./SkillCard.astro";
+
+interface SkillItem {
+    name: string;
+    level: string;
+    description: string;
+    tags?: string[];
+    logoSrc?: string;
+    logoAlt?: string;
+}
+
+interface SkillTab {
+    id: string;
+    label: string;
+    items: SkillItem[];
+}
+
+interface Props {
+    tabs: SkillTab[];
+    ariaLabel: string;
+}
+
+const { tabs, ariaLabel } = Astro.props as Props;
+---
+
+<section data-skills-tabs class="flex flex-col gap-8">
+    <div
+        role="tablist"
+        aria-label={ariaLabel}
+        class="border-earth-200 dark:border-earth-800 flex flex-wrap items-center gap-1 border-b"
+    >
+        {
+            tabs.map((tab, index) => (
+                <button
+                    id={`skills-tab-${tab.id}`}
+                    role="tab"
+                    type="button"
+                    aria-controls={`skills-panel-${tab.id}`}
+                    aria-selected={index === 0 ? "true" : "false"}
+                    tabindex={index === 0 ? "0" : "-1"}
+                    data-tab-index={String(index)}
+                    class:list={[
+                        "rounded-t-lg border-b-2 px-4 py-3 text-sm font-semibold transition-colors sm:px-5",
+                        index === 0
+                            ? "border-primary text-primary"
+                            : "border-transparent text-earth-500 hover:text-earth-700 dark:text-earth-400 dark:hover:text-earth-200",
+                    ]}
+                >
+                    <span class="mr-1 text-xs opacity-80">
+                        {String(index + 1).padStart(2, "0")}.
+                    </span>
+                    {tab.label}
+                </button>
+            ))
+        }
+    </div>
+
+    {
+        tabs.map((tab, index) => (
+            <div
+                id={`skills-panel-${tab.id}`}
+                role="tabpanel"
+                aria-labelledby={`skills-tab-${tab.id}`}
+                data-tab-panel
+                data-tab-index={String(index)}
+                hidden={index !== 0}
+            >
+                <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {tab.items.map((skill) => <SkillCard {...skill} />)}
+                </div>
+            </div>
+        ))
+    }
+</section>
+
+<script is:inline data-astro-rerun>
+    const initSkillsTabs = () => {
+        const groups = document.querySelectorAll("[data-skills-tabs]");
+
+        groups.forEach((group) => {
+            // Prevents binding duplicate listeners after client-side route transitions.
+            if (!(group instanceof HTMLElement) || group.dataset.bound === "true") {
+                return;
+            }
+
+            group.dataset.bound = "true";
+
+            const tabs = Array.from(group.querySelectorAll('[role="tab"]'));
+            const panels = Array.from(group.querySelectorAll("[data-tab-panel]"));
+
+            const activate = (nextIndex, focusTab = false) => {
+                tabs.forEach((tab, index) => {
+                    const isActive = index === nextIndex;
+
+                    if (!(tab instanceof HTMLButtonElement)) return;
+
+                    tab.setAttribute("aria-selected", isActive ? "true" : "false");
+                    tab.tabIndex = isActive ? 0 : -1;
+                    tab.classList.toggle("border-primary", isActive);
+                    tab.classList.toggle("text-primary", isActive);
+                    tab.classList.toggle("border-transparent", !isActive);
+                    tab.classList.toggle("text-earth-500", !isActive);
+                    tab.classList.toggle("hover:text-earth-700", !isActive);
+                    tab.classList.toggle("dark:text-earth-400", !isActive);
+                    tab.classList.toggle("dark:hover:text-earth-200", !isActive);
+
+                    if (focusTab && isActive) tab.focus();
+                });
+
+                panels.forEach((panel, index) => {
+                    // Hidden panels are removed from layout and screen-reader flow.
+                    if (panel instanceof HTMLElement) panel.hidden = index !== nextIndex;
+                });
+            };
+
+            tabs.forEach((tab, index) => {
+                if (!(tab instanceof HTMLButtonElement)) return;
+
+                tab.addEventListener("click", () => activate(index));
+
+                tab.addEventListener("keydown", (event) => {
+                    const maxIndex = tabs.length - 1;
+                    let nextIndex = index;
+
+                    if (event.key === "ArrowRight") nextIndex = index === maxIndex ? 0 : index + 1;
+                    if (event.key === "ArrowLeft") nextIndex = index === 0 ? maxIndex : index - 1;
+                    if (event.key === "Home") nextIndex = 0;
+                    if (event.key === "End") nextIndex = maxIndex;
+
+                    if (nextIndex !== index) {
+                        event.preventDefault();
+                        activate(nextIndex, true);
+                        return;
+                    }
+
+                    if (event.key === " " || event.key === "Enter") {
+                        event.preventDefault();
+                        activate(index);
+                    }
+                });
+            });
+        });
+    };
+
+    // Runs once on first page load and again after each ClientRouter navigation.
+    document.addEventListener("astro:page-load", initSkillsTabs);
+    initSkillsTabs();
+</script>

@@ -1,0 +1,444 @@
+---
+import { Image } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import PageContainer from "../../ui/PageContainer.astro";
+import PageSectionIntro from "../../ui/PageSectionIntro.astro";
+import SkillsTabs from "./SkillsTabs.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type SkillLevel = "expert" | "advanced" | "intermediate";
+
+interface SkillItem {
+    name: string;
+    level: SkillLevel;
+    description: string;
+    tags: string[];
+    logoSrc?: string;
+    logoAlt?: string;
+    loading?: "eager" | "lazy";
+}
+
+interface SkillTab {
+    id: string;
+    label: string;
+    items: SkillItem[];
+}
+
+const levelLabels = {
+    expert: t("skills.level.expert"),
+    advanced: t("skills.level.advanced"),
+    intermediate: t("skills.level.intermediate"),
+} as const;
+
+// Skills content is data-driven so updates can happen without touching markup.
+const tabs: SkillTab[] = [
+    {
+        id: "languages",
+        label: t("skills.tabs.languages"),
+        items: [
+            {
+                name: "TypeScript",
+                level: "expert",
+                description: t("skills.languages.typescript.description"),
+                tags: ["Web Apps", "Node.js", "Type Safety"],
+                logoSrc: "/logos/typescript.svg",
+                logoAlt: "TypeScript logo",
+                loading: "eager",
+            },
+            {
+                name: "JavaScript",
+                level: "expert",
+                description: t("skills.languages.javascript.description"),
+                tags: ["ESNext", "Runtime APIs", "Web Platform"],
+                logoSrc: "/logos/javascript.svg",
+                logoAlt: "JavaScript logo",
+                loading: "eager",
+            },
+            {
+                name: "HTML",
+                level: "expert",
+                description: t("skills.languages.html.description"),
+                tags: ["Semantic Markup", "A11y", "SEO"],
+                logoSrc: "/logos/html.svg",
+                logoAlt: "HTML logo",
+                loading: "eager",
+            },
+            {
+                name: "CSS",
+                level: "expert",
+                description: t("skills.languages.css.description"),
+                tags: ["Responsive UI", "Design Systems", "Animations"],
+                logoSrc: "/logos/css.svg",
+                logoAlt: "CSS logo",
+            },
+            {
+                name: "Go",
+                level: "advanced",
+                description: t("skills.languages.go.description"),
+                tags: ["Performance", "Concurrency", "APIs"],
+                logoSrc: "/logos/go.svg",
+                logoAlt: "Go logo",
+            },
+            {
+                name: "Python",
+                level: "advanced",
+                description: t("skills.languages.python.description"),
+                tags: ["Automation", "Backend", "Scripting"],
+                logoSrc: "/logos/python.svg",
+                logoAlt: "Python logo",
+            },
+            {
+                name: "C#",
+                level: "intermediate",
+                description: t("skills.languages.csharp.description"),
+                tags: ["OOP", ".NET", "APIs"],
+                logoSrc: "/logos/csharp.svg",
+                logoAlt: "C# logo",
+                loading: "lazy",
+            },
+        ],
+    },
+    {
+        id: "frontend",
+        label: t("skills.tabs.frontend"),
+        items: [
+            {
+                name: "Vue",
+                level: "expert",
+                description: t("skills.frontend.vue.description"),
+                tags: ["Composition API", "SPA", "UI Architecture"],
+                logoSrc: "/logos/vue.svg",
+                logoAlt: "Vue logo",
+            },
+            {
+                name: "Nuxt",
+                level: "expert",
+                description: t("skills.frontend.nuxt.description"),
+                tags: ["Fullstack", "SSR", "Routing"],
+                logoSrc: "/logos/nuxt.svg",
+                logoAlt: "Nuxt logo",
+            },
+            {
+                name: "React",
+                level: "advanced",
+                description: t("skills.frontend.react.description"),
+                tags: ["SPA", "Hooks", "Component Design"],
+                logoSrc: "/logos/react.svg",
+                logoAlt: "React logo",
+            },
+            {
+                name: "Next.js",
+                level: "advanced",
+                description: t("skills.frontend.next.description"),
+                tags: ["Fullstack", "SSR", "App Router"],
+                logoSrc: "/logos/nextjs.svg",
+                logoAlt: "Next.js logo",
+            },
+            {
+                name: "Angular",
+                level: "intermediate",
+                description: t("skills.frontend.angular.description"),
+                tags: ["RxJS", "Modules", "Enterprise"],
+                logoSrc: "/logos/angular.svg",
+                logoAlt: "Angular logo",
+            },
+            {
+                name: "Svelte",
+                level: "intermediate",
+                description: t("skills.frontend.svelte.description"),
+                tags: ["Reactive UI", "Lightweight", "DX"],
+                logoSrc: "/logos/svelte.svg",
+                logoAlt: "Svelte logo",
+            },
+            {
+                name: "Astro",
+                level: "intermediate",
+                description: t("skills.frontend.astro.description"),
+                tags: ["Static Sites", "Content", "Performance"],
+                logoSrc: "/logos/astro.svg",
+                logoAlt: "Astro logo",
+            },
+        ],
+    },
+    {
+        id: "backend",
+        label: t("skills.tabs.backend"),
+        items: [
+            {
+                name: "NestJS",
+                level: "expert",
+                description: t("skills.backend.nest.description"),
+                tags: ["TypeScript", "Modular APIs", "Architecture"],
+                logoSrc: "/logos/nestjs.svg",
+                logoAlt: "NestJS logo",
+            },
+            {
+                name: "Hono",
+                level: "expert",
+                description: t("skills.backend.hono.description"),
+                tags: ["TypeScript", "Fast APIs", "Edge"],
+                logoSrc: "/logos/hono.svg",
+                logoAlt: "Hono logo",
+            },
+            {
+                name: "Express",
+                level: "expert",
+                description: t("skills.backend.express.description"),
+                tags: ["Node.js", "REST", "Middleware"],
+                logoSrc: "/logos/express.svg",
+                logoAlt: "Express logo",
+            },
+            {
+                name: "Go net/http",
+                level: "intermediate",
+                description: t("skills.backend.gohttp.description"),
+                tags: ["Stdlib", "Services", "APIs"],
+                logoSrc: "/logos/go.svg",
+                logoAlt: "Go logo",
+            },
+            {
+                name: "ASP.NET",
+                level: "intermediate",
+                description: t("skills.backend.aspnet.description"),
+                tags: ["C#", "Web API", "Backend"],
+                logoSrc: "/logos/dotnet.svg",
+                logoAlt: ".NET logo",
+            },
+        ],
+    },
+    {
+        id: "databases",
+        label: t("skills.tabs.databases"),
+        items: [
+            {
+                name: "PostgreSQL",
+                level: "expert",
+                description: t("skills.databases.postgres.description"),
+                tags: ["Relational Design", "SQL", "Production"],
+                logoSrc: "/logos/postgresql.svg",
+                logoAlt: "PostgreSQL logo",
+            },
+            {
+                name: "MariaDB",
+                level: "advanced",
+                description: t("skills.databases.mariadb.description"),
+                tags: ["SQL", "Indexes", "Operations"],
+                logoSrc: "/logos/mariadb.svg",
+                logoAlt: "MariaDB logo",
+            },
+            {
+                name: "MySQL",
+                level: "advanced",
+                description: t("skills.databases.mysql.description"),
+                tags: ["SQL", "Optimization", "Integration"],
+                logoSrc: "/logos/mysql.svg",
+                logoAlt: "MySQL logo",
+            },
+            {
+                name: "SQL Server",
+                level: "advanced",
+                description: t("skills.databases.sqlserver.description"),
+                tags: ["T-SQL", "Enterprise", "Reporting"],
+                logoSrc: "/logos/sqlserver.svg",
+                logoAlt: "SQL Server logo",
+            },
+            {
+                name: "MongoDB",
+                level: "intermediate",
+                description: t("skills.databases.mongodb.description"),
+                tags: ["NoSQL", "Documents", "Aggregation"],
+                logoSrc: "/logos/mongodb.svg",
+                logoAlt: "MongoDB logo",
+            },
+            {
+                name: "Redis",
+                level: "intermediate",
+                description: t("skills.databases.redis.description"),
+                tags: ["Cache", "Queues", "Performance"],
+                logoSrc: "/logos/redis.svg",
+                logoAlt: "Redis logo",
+            },
+        ],
+    },
+    {
+        id: "tools",
+        label: t("skills.tabs.tools"),
+        items: [
+            {
+                name: "Docker",
+                level: "expert",
+                description: t("skills.tools.docker.description"),
+                tags: ["Local Dev", "Production", "Containers"],
+                logoSrc: "/logos/docker.svg",
+                logoAlt: "Docker logo",
+            },
+            {
+                name: "Linux",
+                level: "advanced",
+                description: t("skills.tools.linux.description"),
+                tags: ["Servers", "Shell", "Operations"],
+                logoSrc: "/logos/linux.svg",
+                logoAlt: "Linux logo",
+            },
+            {
+                name: "GitHub Actions",
+                level: "advanced",
+                description: t("skills.tools.githubActions.description"),
+                tags: ["CI/CD", "Automation", "Workflows"],
+                logoSrc: "/logos/githubactions.svg",
+                logoAlt: "GitHub Actions logo",
+            },
+            {
+                name: "AWS",
+                level: "advanced",
+                description: t("skills.tools.aws.description"),
+                tags: ["Cloud", "Deployment", "Scalability"],
+                logoSrc: "/logos/aws.svg",
+                logoAlt: "AWS logo",
+            },
+            {
+                name: "Cloudflare",
+                level: "advanced",
+                description: t("skills.tools.cloudflare.description"),
+                tags: ["Edge", "DNS", "Security"],
+                logoSrc: "/logos/cloudflare.svg",
+                logoAlt: "Cloudflare logo",
+            },
+            {
+                name: "Git",
+                level: "advanced",
+                description: t("skills.tools.git.description"),
+                tags: ["Version Control", "Collaboration", "Release Flow"],
+                logoSrc: "/logos/git.svg",
+                logoAlt: "Git logo",
+            },
+            {
+                name: "AI",
+                level: "advanced",
+                description: t("skills.tools.ai.description"),
+                tags: ["AI Pairing", "Productivity", "Research"],
+                logoSrc: "/logos/claude.svg",
+                logoAlt: "Claude logo",
+            },
+        ],
+    },
+];
+
+const tabsForView = tabs.map((tab) => ({
+    ...tab,
+    items: tab.items.map((item) => ({
+        ...item,
+        level: levelLabels[item.level],
+    })),
+}));
+---
+
+<section class="pb-18 sm:pb-20 lg:pb-24">
+    <PageContainer class="flex flex-col gap-16">
+        <PageSectionIntro
+            badge={t("skills.intro.badge")}
+            title={t("skills.intro.title")}
+            titleAccent={t("skills.intro.titleAccent")}
+            description={t("skills.intro.description")}
+            class="pt-6 sm:pt-10"
+        />
+
+        <SkillsTabs tabs={tabsForView} ariaLabel={t("skills.tabs.ariaLabel")} />
+
+        <div
+            class="border-earth-200/90 dark:border-earth-800/90 grid grid-cols-1 gap-6 border-t pt-14 lg:grid-cols-2"
+        >
+            <article
+                class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
+            >
+                <div class="flex items-start gap-4">
+                    <div
+                        class="bg-earth-100 dark:bg-earth-800 ring-earth-200 dark:ring-earth-700 flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl ring-1"
+                    >
+                        <Image
+                            src="/logos/iteso.png"
+                            alt="ITESO logo"
+                            width={56}
+                            height={56}
+                            class="h-full w-full object-contain p-1"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="space-y-2">
+                        <h2
+                            class="text-earth-900 dark:text-earth-50 text-2xl leading-tight font-bold tracking-tight"
+                        >
+                            {t("skills.education.title")}
+                        </h2>
+                        <p
+                            class="text-earth-700 dark:text-earth-100/80 text-sm leading-relaxed"
+                        >
+                            {t("skills.education.degree")}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <p
+                        class="text-earth-600 dark:text-earth-200 text-xs font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("skills.education.institutionLabel")}
+                    </p>
+                    <p
+                        class="text-earth-700 dark:text-earth-100/80 leading-relaxed"
+                    >
+                        {t("skills.education.institution")}
+                    </p>
+                </div>
+
+                <div class="space-y-2">
+                    <p
+                        class="text-earth-600 dark:text-earth-200 text-xs font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("skills.education.periodLabel")}
+                    </p>
+                    <p
+                        class="text-earth-700 dark:text-earth-100/80 leading-relaxed"
+                    >
+                        {t("skills.education.period")}
+                    </p>
+                </div>
+            </article>
+
+            <article
+                class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
+            >
+                <h2
+                    class="text-earth-900 dark:text-earth-50 text-2xl leading-tight font-bold tracking-tight"
+                >
+                    {t("skills.soft.title")}
+                </h2>
+                <p
+                    class="text-earth-700 dark:text-earth-100/80 text-sm leading-relaxed"
+                >
+                    {t("skills.soft.description")}
+                </p>
+
+                <div class="flex flex-wrap gap-2">
+                    <span
+                        class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-3 py-1.5 text-xs font-semibold tracking-tight"
+                    >
+                        {t("skills.soft.problemSolving")}
+                    </span>
+                    <span
+                        class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-3 py-1.5 text-xs font-semibold tracking-tight"
+                    >
+                        {t("skills.soft.teamwork")}
+                    </span>
+                    <span
+                        class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-3 py-1.5 text-xs font-semibold tracking-tight"
+                    >
+                        {t("skills.soft.communication")}
+                    </span>
+                </div>
+            </article>
+        </div>
+    </PageContainer>
+</section>

@@ -1,0 +1,43 @@
+---
+import SectionBadge from "./SectionBadge.astro";
+
+interface Props {
+    badge: string;
+    title: string;
+    titleAccent?: string;
+    description: string;
+    class?: string;
+}
+
+const {
+    badge,
+    title,
+    titleAccent,
+    description,
+    class: className,
+} = Astro.props as Props;
+
+const classes = ["border-secondary/75 border-l-3 pl-5 sm:pl-6", className]
+    .filter(Boolean)
+    .join(" ");
+---
+
+<header class={classes}>
+    <SectionBadge label={badge} class="mb-5" />
+    <h1
+        class="text-earth-900 dark:text-earth-50 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl"
+    >
+        {title}
+        {titleAccent && (
+            <>
+                {" "}
+                <span class="text-primary">{titleAccent}</span>
+            </>
+        )}
+    </h1>
+    <p
+        class="text-earth-700 dark:text-earth-100/80 mt-5 max-w-3xl leading-relaxed sm:text-lg"
+    >
+        {description}
+    </p>
+</header>

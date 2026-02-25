@@ -1,0 +1,15 @@
+---
+interface Props {
+    label: string;
+    class?: string;
+}
+
+const { label, class: className } = Astro.props as Props;
+
+const baseClass =
+    "text-secondary ring-secondary/20 bg-secondary/10 w-fit rounded-full px-4 py-1.5 text-xs font-semibold tracking-tight ring-1";
+
+const classes = [baseClass, className].filter(Boolean).join(" ");
+---
+
+<span class={classes}>{label}</span>

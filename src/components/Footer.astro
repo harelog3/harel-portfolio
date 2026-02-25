@@ -1,5 +1,8 @@
 ---
-import { HeartIcon } from "@lucide/astro";
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <footer
@@ -7,11 +10,11 @@ import { HeartIcon } from "@lucide/astro";
     transition:animate="none"
 >
     <p class="flex items-center gap-2">
-        Crafted by <strong>Harel Olguín</strong>
+        {t("footer.craftedBy")} <strong>Harel Olguín</strong>
         <span class="text-secondary">❤</span>
     </p>
 
-    <p class="sm:-translate-x-8">Portfolio <strong>v2.0</strong> @ 2026</p>
+    <p class="sm:-translate-x-8">{t("footer.portfolioVersion")}</p>
 
     <a
         href="https://astro.build"
@@ -19,7 +22,7 @@ import { HeartIcon } from "@lucide/astro";
         rel="noreferrer noopener"
         class="text-earth-700 hover:text-primary inline-flex items-center gap-2 transition-colors"
     >
-        Powered by
+        {t("footer.poweredBy")}
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
