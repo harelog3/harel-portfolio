@@ -1,0 +1,59 @@
+---
+interface Props {
+    href?: string;
+    type?: "button" | "submit" | "reset";
+    variant?: "primary" | "outline";
+    fullWidth?: boolean;
+    target?: "_blank" | "_self" | "_parent" | "_top";
+    rel?: string;
+    ariaLabel?: string;
+    class?: string;
+}
+
+const {
+    href,
+    type = "button",
+    variant = "primary",
+    fullWidth = false,
+    target,
+    rel,
+    ariaLabel,
+    class: className,
+} = Astro.props as Props;
+
+const baseClass =
+    "inline-flex items-center justify-center gap-2.5 rounded-xl px-5 py-4 text-sm font-semibold transition-all hover:-translate-y-0.5";
+
+const variantClass =
+    variant === "outline"
+        ? "bg-earth-50 text-earth-700 ring-earth-700/10 hover:text-secondary hover:ring-secondary/40 dark:bg-earth-800 dark:text-earth-100 dark:ring-earth-100/10 dark:hover:text-earth-50 ring-1"
+        : "bg-primary text-earth-50 shadow-primary/25 hover:bg-primary/90 shadow-md hover:shadow-lg";
+
+const widthClass = fullWidth ? "w-full" : "";
+
+const classes = [baseClass, variantClass, widthClass, className]
+    .filter(Boolean)
+    .join(" ");
+
+const finalRel = target === "_blank" ? rel ?? "noreferrer noopener" : rel;
+---
+
+{
+    href ? (
+        <a
+            href={href}
+            target={target}
+            rel={finalRel}
+            aria-label={ariaLabel}
+            class={classes}
+        >
+            <slot name="icon" />
+            <slot />
+        </a>
+    ) : (
+        <button type={type} aria-label={ariaLabel} class={classes}>
+            <slot name="icon" />
+            <slot />
+        </button>
+    )
+}

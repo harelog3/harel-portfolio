@@ -1,0 +1,152 @@
+---
+import { SendHorizontalIcon } from "@lucide/astro";
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import Button from "../../ui/Button.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const whatsappNumber = "523148580317";
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t("home.contact.whatsappMessage"))}`;
+---
+
+<section class="mx-auto w-full max-w-6xl px-6 pb-18 sm:px-8 lg:px-10 lg:pb-24">
+    <div class="border-earth-200/90 dark:border-earth-800/90 border-t pt-20">
+        <div class="mx-auto mb-14 max-w-2xl text-center">
+            <p
+                class="text-secondary mb-4 text-xs font-semibold tracking-[0.2em] uppercase"
+            >
+                {t("home.contact.tag")}
+            </p>
+            <h2
+                class="text-earth-900 dark:text-earth-50 text-3xl leading-tight font-bold tracking-tight sm:text-5xl"
+            >
+                {t("home.contact.title")}
+            </h2>
+            <p
+                class="text-earth-700 dark:text-earth-100/75 mx-auto mt-6 max-w-xl leading-relaxed sm:text-lg"
+            >
+                {t("home.contact.description")}
+            </p>
+        </div>
+
+        <div
+            class="bg-earth-50/70 dark:bg-earth-900/40 ring-earth-200 dark:ring-earth-800 mx-auto max-w-3xl rounded-4xl p-6 shadow-lg ring-1 sm:p-10 lg:p-12"
+        >
+            <form
+                class="grid grid-cols-1 gap-6 sm:grid-cols-2"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+            >
+                <input
+                    type="hidden"
+                    name="access_key"
+                    value="8bc0056c-b3ce-4cd8-8e94-f07c50ce9f19"
+                />
+                <input
+                    type="hidden"
+                    name="from_name"
+                    value="Harel Portfolio Contact Form"
+                />
+                <input
+                    type="checkbox"
+                    name="botcheck"
+                    class="hidden"
+                    tabindex="-1"
+                    autocomplete="off"
+                />
+                <div class="flex flex-col gap-2">
+                    <label
+                        for="fullName"
+                        class="text-earth-600 dark:text-earth-200 text-[10px] font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("home.contact.fullName")}
+                    </label>
+                    <input
+                        id="fullName"
+                        name="name"
+                        type="text"
+                        placeholder={t("home.contact.placeholder.fullName")}
+                        required
+                        class="border-earth-200 text-earth-900 placeholder:text-earth-500/75 focus:border-primary focus:ring-primary/15 dark:border-earth-700 dark:bg-earth-800 dark:text-earth-50 dark:placeholder:text-earth-100/45 w-full rounded-xl border bg-white px-4 py-3 transition-all outline-none focus:ring-4"
+                    />
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <label
+                        for="emailAddress"
+                        class="text-earth-600 dark:text-earth-200 text-[10px] font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("home.contact.email")}
+                    </label>
+                    <input
+                        id="emailAddress"
+                        name="email"
+                        type="email"
+                        placeholder={t("home.contact.placeholder.email")}
+                        required
+                        class="border-earth-200 text-earth-900 placeholder:text-earth-500/75 focus:border-primary focus:ring-primary/15 dark:border-earth-700 dark:bg-earth-800 dark:text-earth-50 dark:placeholder:text-earth-100/45 w-full rounded-xl border bg-white px-4 py-3 transition-all outline-none focus:ring-4"
+                    />
+                </div>
+
+                <div class="flex flex-col gap-2 sm:col-span-2">
+                    <label
+                        for="subject"
+                        class="text-earth-600 dark:text-earth-200 text-[10px] font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("home.contact.subject")}
+                    </label>
+                    <input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        placeholder={t("home.contact.placeholder.subject")}
+                        class="border-earth-200 text-earth-900 placeholder:text-earth-500/75 focus:border-primary focus:ring-primary/15 dark:border-earth-700 dark:bg-earth-800 dark:text-earth-50 dark:placeholder:text-earth-100/45 w-full rounded-xl border bg-white px-4 py-3 transition-all outline-none focus:ring-4"
+                    />
+                </div>
+
+                <div class="flex flex-col gap-2 sm:col-span-2">
+                    <label
+                        for="messageBody"
+                        class="text-earth-600 dark:text-earth-200 text-[10px] font-semibold tracking-[0.16em] uppercase"
+                    >
+                        {t("home.contact.message")}
+                    </label>
+                    <textarea
+                        id="messageBody"
+                        name="message"
+                        rows="5"
+                        placeholder={t("home.contact.placeholder.message")}
+                        required
+                        class="border-earth-200 text-earth-900 placeholder:text-earth-500/75 focus:border-primary focus:ring-primary/15 dark:border-earth-700 dark:bg-earth-800 dark:text-earth-50 dark:placeholder:text-earth-100/45 w-full resize-none rounded-xl border bg-white px-4 py-3 transition-all outline-none focus:ring-4"
+                    ></textarea>
+                </div>
+
+                <div class="pt-2 sm:col-span-2">
+                    <Button type="submit" fullWidth class="cursor-pointer">
+                        <SendHorizontalIcon slot="icon" class="h-4 w-4" />
+                        <span>{t("home.contact.submit")}</span>
+                    </Button>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <Button
+                        href={whatsappHref}
+                        target="_blank"
+                        variant="outline"
+                        fullWidth
+                        ariaLabel={t("home.contact.whatsapp")}
+                    >
+                        <img
+                            slot="icon"
+                            src="/logos/whatsapp.svg"
+                            alt=""
+                            aria-hidden="true"
+                            class="h-4 w-4"
+                        />
+                        <span>{t("home.contact.whatsapp")}</span>
+                    </Button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

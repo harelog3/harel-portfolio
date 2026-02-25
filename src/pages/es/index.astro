@@ -1,11 +1,8 @@
 ---
 import SiteLayout from "../../layouts/SiteLayout.astro";
-import { getLangFromUrl, useTranslations } from "../../i18n/utils";
-
-const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+import HomePage from "../../components/pages/home/HomePage.astro";
 ---
 
 <SiteLayout>
-    <h1>{t("page.home.title")}</h1>
+    <HomePage />
 </SiteLayout>
