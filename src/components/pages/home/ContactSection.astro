@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { SendHorizontalIcon } from "@lucide/astro";
 import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
 import Button from "../../ui/Button.astro";
@@ -136,11 +137,13 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
                         fullWidth
                         ariaLabel={t("home.contact.whatsapp")}
                     >
-                        <img
+                        <Image
                             slot="icon"
                             src="/logos/whatsapp.svg"
                             alt=""
                             aria-hidden="true"
+                            width="16"
+                            height="16"
                             class="h-4 w-4"
                         />
                         <span>{t("home.contact.whatsapp")}</span>

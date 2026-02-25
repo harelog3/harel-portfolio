@@ -37,7 +37,7 @@ export const ui = {
         "home.contact.whatsappMessage":
             "Hi Harel, I found your portfolio and would like to discuss a project.",
         "lang.english": "English",
-        "lang.spanishMx": "Español (MX)",
+        "lang.spanishMx": "Spanish (MX)",
         "lang.change": "Change language",
         "page.home.title": "Hello World",
         "page.skills.title": "Hello World",
@@ -61,7 +61,7 @@ export const ui = {
         "home.contact.tag": "// Contacto",
         "home.contact.title": "Escribeme",
         "home.contact.description":
-            "Tienes un proyecto en mente o solo quieres saludar? Enviame un mensaje usando el formulario de abajo.",
+            "¿Tienes un proyecto en mente o solo quieres saludar? Enviame un mensaje usando el formulario de abajo.",
         "home.contact.fullName": "Nombre Completo",
         "home.contact.email": "Correo Electronico",
         "home.contact.subject": "asunto",
@@ -75,7 +75,7 @@ export const ui = {
         "home.contact.whatsappMessage":
             "Hola Harel, vi tu portafolio y me gustaría hablar sobre un proyecto.",
         "lang.english": "Inglés",
-        "lang.spanishMx": "Spanish (MX)",
+        "lang.spanishMx": "Español (MX)",
         "lang.change": "Cambiar idioma",
         "page.home.title": "Inicio",
         "page.skills.title": "Habilidades",
