@@ -335,23 +335,27 @@ const tabsForView = tabs.map((tab) => ({
 }));
 ---
 
-<section class="pb-18 sm:pb-20 lg:pb-24">
+<section class="skills-page pb-18 sm:pb-20 lg:pb-24">
     <PageContainer class="flex flex-col gap-16">
-        <PageSectionIntro
-            badge={t("skills.intro.badge")}
-            title={t("skills.intro.title")}
-            titleAccent={t("skills.intro.titleAccent")}
-            description={t("skills.intro.description")}
-            class="pt-6 sm:pt-10"
-        />
+        <div class="skills-intro-wrap">
+            <PageSectionIntro
+                badge={t("skills.intro.badge")}
+                title={t("skills.intro.title")}
+                titleAccent={t("skills.intro.titleAccent")}
+                description={t("skills.intro.description")}
+                class="pt-6 sm:pt-10"
+            />
+        </div>
 
-        <SkillsTabs tabs={tabsForView} ariaLabel={t("skills.tabs.ariaLabel")} />
+        <div class="skills-tabs-wrap">
+            <SkillsTabs tabs={tabsForView} ariaLabel={t("skills.tabs.ariaLabel")} />
+        </div>
 
         <div
-            class="border-earth-200/90 dark:border-earth-800/90 grid grid-cols-1 gap-6 border-t pt-14 lg:grid-cols-2"
+            class="skills-support-grid border-earth-200/90 dark:border-earth-800/90 grid grid-cols-1 gap-6 border-t pt-14 lg:grid-cols-2"
         >
             <article
-                class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
+                class="skills-support-card bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
             >
                 <div class="flex items-start gap-4">
                     <div
@@ -408,7 +412,7 @@ const tabsForView = tabs.map((tab) => ({
             </article>
 
             <article
-                class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
+                class="skills-support-card bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex flex-col gap-6 rounded-3xl p-6 ring-1 sm:p-7"
             >
                 <h2
                     class="text-earth-900 dark:text-earth-50 text-2xl leading-tight font-bold tracking-tight"
@@ -442,3 +446,78 @@ const tabsForView = tabs.map((tab) => ({
         </div>
     </PageContainer>
 </section>
+
+<style>
+    @keyframes skills-rise-fade {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 26px, 0) scale(0.985);
+            filter: blur(12px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes skills-slide-settle {
+        0% {
+            opacity: 0;
+            transform: translate3d(-18px, 18px, 0);
+            filter: blur(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            filter: blur(0);
+        }
+    }
+
+    .skills-page {
+        --skills-enter-ease: cubic-bezier(0.2, 0.9, 0.2, 1);
+        --skills-enter-fill: both;
+    }
+
+    .skills-intro-wrap {
+        opacity: 0;
+        animation: skills-rise-fade 0.78s var(--skills-enter-ease)
+            var(--skills-enter-fill);
+        animation-delay: 0.08s;
+        will-change: opacity, transform, filter;
+    }
+
+    .skills-tabs-wrap {
+        opacity: 0;
+        animation: skills-slide-settle 0.72s var(--skills-enter-ease)
+            var(--skills-enter-fill);
+        animation-delay: 0.2s;
+        will-change: opacity, transform, filter;
+    }
+
+    .skills-support-card {
+        opacity: 0;
+        animation: skills-rise-fade 0.82s var(--skills-enter-ease)
+            var(--skills-enter-fill);
+        will-change: opacity, transform, filter;
+    }
+
+    .skills-support-card:nth-child(1) {
+        animation-delay: 0.62s;
+    }
+
+    .skills-support-card:nth-child(2) {
+        animation-delay: 0.76s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :where(.skills-intro-wrap, .skills-tabs-wrap, .skills-support-card) {
+            opacity: 1;
+            animation: none;
+            filter: none;
+            transform: none;
+        }
+    }
+</style>

@@ -10,9 +10,9 @@ const whatsappNumber = "523148580317";
 const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(t("home.contact.whatsappMessage"))}`;
 ---
 
-<section class="mx-auto w-full max-w-6xl px-6 pb-18 sm:px-8 lg:px-10 lg:pb-24">
+<section class="home-contact mx-auto w-full max-w-6xl px-6 pb-18 sm:px-8 lg:px-10 lg:pb-24">
     <div class="border-earth-200/90 dark:border-earth-800/90 border-t pt-20">
-        <div class="mx-auto mb-14 max-w-2xl text-center">
+        <div class="home-contact-intro mx-auto mb-14 max-w-2xl text-center">
             <p
                 class="text-secondary mb-4 text-xs font-semibold tracking-[0.2em] uppercase"
             >
@@ -31,7 +31,7 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
         </div>
 
         <div
-            class="bg-earth-50/70 dark:bg-earth-900/40 ring-earth-200 dark:ring-earth-800 mx-auto max-w-3xl rounded-4xl p-6 shadow-lg ring-1 sm:p-10 lg:p-12"
+            class="home-contact-card bg-earth-50/70 dark:bg-earth-900/40 ring-earth-200 dark:ring-earth-800 mx-auto max-w-3xl rounded-4xl p-6 shadow-lg ring-1 sm:p-10 lg:p-12"
         >
             <form
                 class="grid grid-cols-1 gap-6 sm:grid-cols-2"
@@ -153,3 +153,48 @@ const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes home-contact-rise {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 28px, 0) scale(0.985);
+            filter: blur(14px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    .home-contact {
+        --home-contact-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --home-contact-enter-fill: both;
+    }
+
+    :where(.home-contact-intro, .home-contact-card) {
+        opacity: 0;
+        animation: home-contact-rise 0.82s var(--home-contact-enter-ease)
+            var(--home-contact-enter-fill);
+        will-change: opacity, transform, filter;
+    }
+
+    .home-contact-intro {
+        animation-delay: 0.6s;
+    }
+
+    .home-contact-card {
+        animation-delay: 0.74s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :where(.home-contact-intro, .home-contact-card) {
+            opacity: 1;
+            animation: none;
+            filter: none;
+            transform: none;
+        }
+    }
+</style>

@@ -66,13 +66,54 @@ const { tabs, ariaLabel } = Astro.props as Props;
                 data-tab-index={String(index)}
                 hidden={index !== 0}
             >
-                <div class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-                    {tab.items.map((skill) => <SkillCard {...skill} />)}
+                <div class="skills-cards-grid grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    {
+                        tab.items.map((skill, skillIndex) => (
+                            <div
+                                class="skills-card-shell"
+                                style={`--skills-card-index:${skillIndex};`}
+                            >
+                                <SkillCard {...skill} />
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         ))
     }
 </section>
+
+<style>
+    @keyframes skills-card-enter {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 22px, 0) scale(0.985);
+            filter: blur(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    [data-tab-panel]:not([hidden]) .skills-card-shell {
+        opacity: 0;
+        animation: skills-card-enter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: calc(0.1s + (var(--skills-card-index, 0) * 0.035s));
+        will-change: opacity, transform, filter;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        [data-tab-panel]:not([hidden]) .skills-card-shell {
+            opacity: 1;
+            animation: none;
+            filter: none;
+            transform: none;
+        }
+    }
+</style>
 
 <script is:inline data-astro-rerun>
     const initSkillsTabs = () => {

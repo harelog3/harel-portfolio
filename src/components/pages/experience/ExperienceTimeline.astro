@@ -1,0 +1,69 @@
+---
+import ExperienceTimelineItem from "./ExperienceTimelineItem.astro";
+
+type ExperienceEntryType = "work";
+
+interface ExperiencePeriod {
+    label: string;
+    start: string;
+    end?: string;
+}
+
+interface ExperienceEntry {
+    id: string;
+    type: ExperienceEntryType;
+    typeLabel: string;
+    company: string;
+    role: string;
+    period: ExperiencePeriod;
+    summary: string;
+    highlights: string[];
+    technologies?: string[];
+}
+
+interface Props {
+    entries: ExperienceEntry[];
+    ariaLabel: string;
+}
+
+const { entries, ariaLabel } = Astro.props as Props;
+---
+
+<section aria-label={ariaLabel} class="experience-timeline relative">
+    <span
+        aria-hidden="true"
+        class="experience-timeline-rail bg-primary/25 pointer-events-none absolute top-0 bottom-0 left-4 w-px md:left-1/2 md:-translate-x-1/2"
+    ></span>
+
+    <ol class="experience-timeline-list relative flex flex-col gap-8 sm:gap-10">
+        {entries.map((entry, index) => <ExperienceTimelineItem entry={entry} index={index} />)}
+    </ol>
+</section>
+
+<style>
+    @keyframes experience-rail-draw {
+        0% {
+            opacity: 0;
+            transform: scaleY(0.12);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    }
+
+    .experience-timeline-rail {
+        animation: experience-rail-draw 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: 0.34s;
+        transform-origin: top center;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .experience-timeline-rail {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

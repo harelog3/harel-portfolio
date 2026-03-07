@@ -130,12 +130,63 @@ export const ui = {
             "I am highly experienced with Git for version control, code review workflows, and collaborative development.",
         "skills.tools.ai.description":
             "I use AI coding agents like Codex and Claude to accelerate delivery while maintaining careful human review.",
+        "experience.intro.badge": "~/career-log",
+        "experience.intro.title": "Work",
+        "experience.intro.titleAccent": "Experience",
+        "experience.intro.description":
+            "A timeline of internships and engineering roles focused on delivery, ownership, and collaborative product development.",
+        "experience.timeline.ariaLabel": "Professional experience timeline",
+        "experience.types.work": "Work",
+        "experience.entries.roomieland.company": "Roomieland",
+        "experience.entries.roomieland.role":
+            "Part-Time Software Engineer (Frontend Lead)",
+        "experience.entries.roomieland.periodLabel": "November 2025 - Present",
+        "experience.entries.roomieland.summary":
+            "Lead frontend development for a complex housing platform that connects people looking for places to live.",
+        "experience.entries.roomieland.highlights.1":
+            "Developed and shipped multiple production views in Nuxt, integrating frontend flows with backend REST APIs.",
+        "experience.entries.roomieland.highlights.2":
+            "Co-designed and implemented a BFF architecture for multi-client scenarios to protect sensitive data in browsers.",
+        "experience.entries.roomieland.highlights.3":
+            "Delivered advanced features with the team, including cookie-based refresh tokens and real-time WebSocket flows, using GitHub and GitHub Projects.",
+        "experience.entries.oracle.company": "Oracle",
+        "experience.entries.oracle.role": "Software Engineering Intern",
+        "experience.entries.oracle.periodLabel": "February 2025 - August 2025",
+        "experience.entries.oracle.summary":
+            "Worked on an Oracle telecommunications system used by providers in Latin America to create and track multi-service orders.",
+        "experience.entries.oracle.highlights.1":
+            "Adapted to Oracle's internal ecosystem and engineering workflows while contributing to a large, enterprise-scale codebase.",
+        "experience.entries.oracle.highlights.2":
+            "Strengthened foundations in Kubernetes and complex software architecture, collaborating through Jira and Visual Builder.",
+        "experience.entries.toshiba.company":
+            "Toshiba Global Commerce Solutions (Toshiba GCS)",
+        "experience.entries.toshiba.role": "Software Intern",
+        "experience.entries.toshiba.periodLabel": "July 2024 - February 2025",
+        "experience.entries.toshiba.summary":
+            "Built an internal web platform for support teams to centralize Toshiba device error knowledge, then supported its transition into a chatbot product.",
+        "experience.entries.toshiba.highlights.1":
+            "Implemented a UI migration from Vue 2 to Vue 3 with TypeScript for better maintainability and stronger contracts.",
+        "experience.entries.toshiba.highlights.2":
+            "Reimplemented authentication with SAML SSO and a Django backend to improve persistence and security.",
+        "experience.entries.toshiba.highlights.3":
+            "Ensured reliable frontend-backend integration through REST APIs and type-safe contracts, collaborating in GitLab and Jira.",
+        "experience.entries.inoventi.company": "Inoventi",
+        "experience.entries.inoventi.role": "Backend Intern",
+        "experience.entries.inoventi.periodLabel": "January 2024 - July 2024",
+        "experience.entries.inoventi.summary":
+            "Contributed to a project management platform with ASP.NET and jQuery, delivering backend improvements and data-driven dashboard capabilities.",
+        "experience.entries.inoventi.highlights.1":
+            "Optimized EF Core and SQL Server queries to improve application responsiveness in key workflows.",
+        "experience.entries.inoventi.highlights.2":
+            "Implemented a high-impact dashboard view with aggregated metrics for operational visibility.",
+        "experience.entries.inoventi.highlights.3":
+            "Worked with DLL-based modules and MVC patterns in a collaborative GitHub workflow using the internal PM tool.",
         "lang.english": "English",
         "lang.spanishMx": "Spanish (MX)",
         "lang.change": "Change language",
         "page.home.title": "Hello World",
         "page.skills.title": "Skills",
-        "page.experience.title": "Hello World",
+        "page.experience.title": "Experience",
         "page.projects.title": "Hello World",
     },
     es: {
@@ -262,6 +313,59 @@ export const ui = {
             "Tengo amplia experiencia con Git para control de versiones, flujos de revisión y trabajo colaborativo.",
         "skills.tools.ai.description":
             "Utilizo agentes de IA como Codex y Claude para acelerar entregas, manteniendo siempre revisión y validación humana del código.",
+        "experience.intro.badge": "~/bitacora-profesional",
+        "experience.intro.title": "Experiencia",
+        "experience.intro.titleAccent": "Laboral",
+        "experience.intro.description":
+            "Una línea de tiempo de internships y roles de ingeniería enfocados en entrega, ownership y desarrollo colaborativo de producto.",
+        "experience.timeline.ariaLabel":
+            "Línea de tiempo de experiencia profesional",
+        "experience.types.work": "Trabajo",
+        "experience.entries.roomieland.company": "Roomieland",
+        "experience.entries.roomieland.role":
+            "Software Engineer Part-Time (Frontend Lead)",
+        "experience.entries.roomieland.periodLabel":
+            "Noviembre 2025 - Actualidad",
+        "experience.entries.roomieland.summary":
+            "Lidero el desarrollo frontend de una plataforma compleja de vivienda que conecta personas en búsqueda de un lugar para residir.",
+        "experience.entries.roomieland.highlights.1":
+            "Desarrollé y entregué múltiples vistas en producción con Nuxt, integrando flujos frontend con APIs REST del backend.",
+        "experience.entries.roomieland.highlights.2":
+            "Codiseñé e implementé una arquitectura BFF para escenarios multi-cliente, reduciendo exposición de datos sensibles en navegador.",
+        "experience.entries.roomieland.highlights.3":
+            "Implementé junto al equipo features complejos como refresh tokens en cookies y flujos en tiempo real con WebSockets, trabajando con GitHub y GitHub Projects.",
+        "experience.entries.oracle.company": "Oracle",
+        "experience.entries.oracle.role": "Software Intern",
+        "experience.entries.oracle.periodLabel": "Febrero 2025 - Agosto 2025",
+        "experience.entries.oracle.summary":
+            "Trabajé en un sistema de telecomunicaciones de Oracle utilizado por empresas de Latinoamérica para generar y dar seguimiento a órdenes de múltiples servicios.",
+        "experience.entries.oracle.highlights.1":
+            "Me adapté al ecosistema interno de Oracle y a sus flujos de ingeniería, contribuyendo en un codebase empresarial de alta complejidad.",
+        "experience.entries.oracle.highlights.2":
+            "Fortalecí mi base en Kubernetes y arquitecturas de software complejas, colaborando con Jira y Visual Builder.",
+        "experience.entries.toshiba.company":
+            "Toshiba Global Commerce Solutions (Toshiba GCS)",
+        "experience.entries.toshiba.role": "Software Intern",
+        "experience.entries.toshiba.periodLabel": "Julio 2024 - Febrero 2025",
+        "experience.entries.toshiba.summary":
+            "Desarrollé una herramienta web interna para centralizar una base de conocimiento de errores de equipos Toshiba, y acompañé su transición hacia un producto tipo chatbot.",
+        "experience.entries.toshiba.highlights.1":
+            "Implementé una migración de UI de Vue 2 a Vue 3 con TypeScript para mejorar mantenibilidad y contratos de datos.",
+        "experience.entries.toshiba.highlights.2":
+            "Reimplementé la autenticación con SAML SSO y backend en Django para reforzar persistencia y seguridad.",
+        "experience.entries.toshiba.highlights.3":
+            "Aseguré la integración frontend-backend mediante APIs REST y contratos type-safe, colaborando con GitLab y Jira.",
+        "experience.entries.inoventi.company": "Inoventi",
+        "experience.entries.inoventi.role": "Backend Intern",
+        "experience.entries.inoventi.periodLabel": "Enero 2024 - Julio 2024",
+        "experience.entries.inoventi.summary":
+            "Contribuí al desarrollo de una herramienta de project management con ASP.NET y jQuery, entregando mejoras backend y vistas orientadas a datos.",
+        "experience.entries.inoventi.highlights.1":
+            "Optimicé consultas con EF Core y SQL Server para mejorar el rendimiento en flujos críticos.",
+        "experience.entries.inoventi.highlights.2":
+            "Implementé una vista clave para dashboard con agregaciones de datos orientadas a monitoreo operativo.",
+        "experience.entries.inoventi.highlights.3":
+            "Trabajé con módulos basados en DLL y patrón MVC dentro de un entorno colaborativo con GitHub y la herramienta interna del equipo.",
         "lang.english": "Inglés",
         "lang.spanishMx": "Español (MX)",
         "lang.change": "Cambiar idioma",

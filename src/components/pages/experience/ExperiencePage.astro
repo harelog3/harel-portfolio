@@ -1,0 +1,213 @@
+---
+import { getLangFromUrl, useTranslations } from "../../../i18n/utils";
+import PageContainer from "../../ui/PageContainer.astro";
+import PageSectionIntro from "../../ui/PageSectionIntro.astro";
+import ExperienceTimeline from "./ExperienceTimeline.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type ExperienceEntryType = "work";
+
+interface ExperiencePeriod {
+    label: string;
+    start: string;
+    end?: string;
+}
+
+interface ExperienceEntry {
+    id: string;
+    type: ExperienceEntryType;
+    typeLabel: string;
+    company: string;
+    role: string;
+    period: ExperiencePeriod;
+    summary: string;
+    highlights: string[];
+    technologies?: string[];
+}
+
+// Timeline content is object-based to keep markup stable as entries evolve.
+const timelineEntries: ExperienceEntry[] = [
+    {
+        id: "roomieland",
+        type: "work",
+        typeLabel: t("experience.types.work"),
+        company: t("experience.entries.roomieland.company"),
+        role: t("experience.entries.roomieland.role"),
+        period: {
+            label: t("experience.entries.roomieland.periodLabel"),
+            start: "2025-11",
+        },
+        summary: t("experience.entries.roomieland.summary"),
+        highlights: [
+            t("experience.entries.roomieland.highlights.1"),
+            t("experience.entries.roomieland.highlights.2"),
+            t("experience.entries.roomieland.highlights.3"),
+        ],
+        technologies: [
+            "Nuxt",
+            "TypeScript",
+            "REST API",
+            "BFF",
+            "WebSockets",
+            "GitHub",
+            "GitHub Projects",
+        ],
+    },
+    {
+        id: "oracle",
+        type: "work",
+        typeLabel: t("experience.types.work"),
+        company: t("experience.entries.oracle.company"),
+        role: t("experience.entries.oracle.role"),
+        period: {
+            label: t("experience.entries.oracle.periodLabel"),
+            start: "2025-02",
+            end: "2025-08",
+        },
+        summary: t("experience.entries.oracle.summary"),
+        highlights: [
+            t("experience.entries.oracle.highlights.1"),
+            t("experience.entries.oracle.highlights.2"),
+        ],
+        technologies: ["Oracle Ecosystem", "Kubernetes", "Jira", "Visual Builder"],
+    },
+    {
+        id: "toshiba-gcs",
+        type: "work",
+        typeLabel: t("experience.types.work"),
+        company: t("experience.entries.toshiba.company"),
+        role: t("experience.entries.toshiba.role"),
+        period: {
+            label: t("experience.entries.toshiba.periodLabel"),
+            start: "2024-07",
+            end: "2025-02",
+        },
+        summary: t("experience.entries.toshiba.summary"),
+        highlights: [
+            t("experience.entries.toshiba.highlights.1"),
+            t("experience.entries.toshiba.highlights.2"),
+            t("experience.entries.toshiba.highlights.3"),
+        ],
+        technologies: [
+            "Vue 2",
+            "Vue 3",
+            "TypeScript",
+            "Django",
+            "SAML SSO",
+            "REST API",
+            "GitLab",
+            "Jira",
+        ],
+    },
+    {
+        id: "inoventi",
+        type: "work",
+        typeLabel: t("experience.types.work"),
+        company: t("experience.entries.inoventi.company"),
+        role: t("experience.entries.inoventi.role"),
+        period: {
+            label: t("experience.entries.inoventi.periodLabel"),
+            start: "2024-01",
+            end: "2024-07",
+        },
+        summary: t("experience.entries.inoventi.summary"),
+        highlights: [
+            t("experience.entries.inoventi.highlights.1"),
+            t("experience.entries.inoventi.highlights.2"),
+            t("experience.entries.inoventi.highlights.3"),
+        ],
+        technologies: [
+            "ASP.NET",
+            "EF Core",
+            "SQL Server",
+            "jQuery",
+            "MVC",
+            "DLLs",
+            "GitHub",
+        ],
+    },
+];
+---
+
+<section class="experience-page pb-18 sm:pb-20 lg:pb-24">
+    <PageContainer class="flex flex-col gap-16">
+        <div class="experience-intro-wrap">
+            <PageSectionIntro
+                badge={t("experience.intro.badge")}
+                title={t("experience.intro.title")}
+                titleAccent={t("experience.intro.titleAccent")}
+                description={t("experience.intro.description")}
+                class="pt-6 sm:pt-10"
+            />
+        </div>
+
+        <div class="experience-timeline-wrap">
+            <ExperienceTimeline
+                entries={timelineEntries}
+                ariaLabel={t("experience.timeline.ariaLabel")}
+            />
+        </div>
+    </PageContainer>
+</section>
+
+<style>
+    @keyframes experience-rise-fade {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 26px, 0) scale(0.985);
+            filter: blur(12px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes experience-timeline-settle {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+            filter: blur(10px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+            filter: blur(0);
+        }
+    }
+
+    .experience-page {
+        --experience-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --experience-enter-fill: both;
+    }
+
+    .experience-intro-wrap {
+        opacity: 0;
+        animation: experience-rise-fade 0.8s var(--experience-enter-ease)
+            var(--experience-enter-fill);
+        animation-delay: 0.08s;
+        will-change: opacity, transform, filter;
+    }
+
+    .experience-timeline-wrap {
+        opacity: 0;
+        animation: experience-timeline-settle 0.86s var(--experience-enter-ease)
+            var(--experience-enter-fill);
+        animation-delay: 0.22s;
+        will-change: opacity, transform, filter;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :where(.experience-intro-wrap, .experience-timeline-wrap) {
+            opacity: 1;
+            animation: none;
+            filter: none;
+            transform: none;
+        }
+    }
+</style>

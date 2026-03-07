@@ -27,32 +27,36 @@ const socialLinks = [
 ];
 ---
 
-<section class="mx-auto w-full max-w-6xl px-6 py-18 sm:px-8 lg:px-10 lg:py-24">
+<section
+    class="home-hero mx-auto w-full max-w-6xl px-6 py-2 sm:px-8 lg:px-10 lg:py-24"
+>
     <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
-        <div class="flex flex-col gap-7 lg:col-span-7">
-            <SectionBadge label={t("home.about.tag")} />
+        <div class="home-hero-copy flex flex-col gap-7 lg:col-span-7">
+            <div class="home-badge-wrap">
+                <SectionBadge label={t("home.about.tag")} />
+            </div>
 
-            <div class="space-y-5">
+            <div class="home-copy-block space-y-5">
                 <h1
-                    class="text-earth-900 dark:text-earth-50 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl"
+                    class="home-title text-earth-900 dark:text-earth-50 text-4xl leading-tight font-bold tracking-tight sm:text-5xl lg:text-6xl"
                 >
                     {t("home.about.title")}
                 </h1>
                 <p
-                    class="text-earth-700 dark:text-earth-100/80 max-w-2xl leading-relaxed sm:text-lg"
+                    class="home-description text-earth-700 dark:text-earth-100/80 max-w-2xl leading-relaxed sm:text-lg"
                 >
                     {t("home.about.description")} :)
                 </p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-4 pt-1">
+            <div class="home-cta flex flex-wrap items-center gap-4 pt-1">
                 <Button href="/harel_resume_english.pdf" class="px-7 py-3.5">
                     <DownloadIcon slot="icon" class="h-4 w-4" />
                     <span>{t("home.about.downloadCv")}</span>
                 </Button>
             </div>
 
-            <div class="flex items-center gap-3 pt-1">
+            <div class="home-social flex items-center gap-3 pt-1">
                 {
                     socialLinks.map((item) => {
                         return (
@@ -82,7 +86,7 @@ const socialLinks = [
             </div>
         </div>
 
-        <div class="relative lg:col-span-5">
+        <div class="home-portrait relative lg:col-span-5">
             <div
                 class="bg-earth-100 ring-earth-700/10 dark:bg-earth-800 dark:ring-earth-100/10 overflow-hidden rounded-4xl p-5 shadow-2xl ring-1"
             >
@@ -100,7 +104,7 @@ const socialLinks = [
                 </div>
             </div>
             <div
-                class="bg-base dark:bg-earth-800 ring-earth-700/10 dark:ring-earth-100/10 absolute -bottom-5 -left-5 rounded-xl px-4 py-3 shadow-lg ring-1"
+                class="bg-base dark:bg-earth-800 ring-earth-700/10 dark:ring-earth-100/10 absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-xl px-4 py-3 shadow-lg ring-1 lg:-left-5 lg:translate-x-0"
             >
                 <p
                     class="text-secondary text-2xl leading-none font-bold uppercase"
@@ -116,3 +120,123 @@ const socialLinks = [
         </div>
     </div>
 </section>
+
+<style>
+    @keyframes home-rise-fade {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 28px, 0) scale(0.985);
+            filter: blur(14px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes home-portrait-settle {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 36px, 0) scale(0.94) rotate(-1.5deg);
+            filter: blur(18px);
+        }
+
+        65% {
+            opacity: 1;
+            transform: translate3d(0, -4px, 0) scale(1.015) rotate(0.35deg);
+            filter: blur(0);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+            filter: blur(0);
+        }
+    }
+
+    @keyframes home-social-pop {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 18px, 0) scale(0.92);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) scale(1);
+        }
+    }
+
+    .home-hero {
+        --home-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --home-enter-fill: both;
+    }
+
+    :where(.home-badge-wrap, .home-title, .home-description, .home-cta) {
+        opacity: 0;
+        animation: home-rise-fade 0.82s var(--home-enter-ease)
+            var(--home-enter-fill);
+        will-change: opacity, transform, filter;
+    }
+
+    .home-social a {
+        opacity: 0;
+        animation: home-social-pop 0.66s var(--home-enter-ease)
+            var(--home-enter-fill);
+        will-change: opacity, transform;
+    }
+
+    .home-portrait {
+        opacity: 0;
+        animation: home-portrait-settle 1.05s var(--home-enter-ease)
+            var(--home-enter-fill);
+        animation-delay: 0.22s;
+        will-change: opacity, transform, filter;
+        transform-origin: center 65%;
+    }
+
+    .home-badge-wrap {
+        animation-delay: 0.06s;
+    }
+
+    .home-title {
+        animation-delay: 0.16s;
+    }
+
+    .home-description {
+        animation-delay: 0.28s;
+    }
+
+    .home-cta {
+        animation-delay: 0.4s;
+    }
+
+    .home-social a:nth-child(1) {
+        animation-delay: 0.5s;
+    }
+
+    .home-social a:nth-child(2) {
+        animation-delay: 0.58s;
+    }
+
+    .home-social a:nth-child(3) {
+        animation-delay: 0.66s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        :where(
+            .home-badge-wrap,
+            .home-title,
+            .home-description,
+            .home-cta,
+            .home-social a,
+            .home-portrait
+        ) {
+            opacity: 1;
+            animation: none;
+            filter: none;
+            transform: none;
+        }
+    }
+</style>
