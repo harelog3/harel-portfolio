@@ -35,7 +35,7 @@ const classes = [baseClass, variantClass, widthClass, className]
     .filter(Boolean)
     .join(" ");
 
-const finalRel = target === "_blank" ? rel ?? "noreferrer noopener" : rel;
+const finalRel = target === "_blank" ? (rel ?? "noreferrer noopener") : rel;
 ---
 
 {

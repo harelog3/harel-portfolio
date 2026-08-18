@@ -17,7 +17,7 @@ const locales = [
 
 <details class="lang-menu group relative">
     <summary
-        class="text-earth-900 ring-earth-900/10 hover:text-primary hover:bg-earth-100/70 dark:text-earth-50 dark:hover:bg-earth-800/80 dark:hover:text-white flex cursor-pointer list-none items-center rounded-full px-3 py-2 ring-1 transition-all duration-200 [&::-webkit-details-marker]:hidden"
+        class="text-earth-900 ring-earth-900/10 hover:text-primary hover:bg-earth-100/70 dark:text-earth-50 dark:hover:bg-earth-800/80 flex cursor-pointer list-none items-center rounded-full px-3 py-2 ring-1 transition-all duration-200 dark:hover:text-white [&::-webkit-details-marker]:hidden"
         aria-label={t("lang.change")}
     >
         <span class="sr-only">{t("lang.change")}</span>
@@ -25,7 +25,7 @@ const locales = [
     </summary>
 
     <div
-        class="lang-menu-panel bg-base/95 ring-earth-900/10 dark:bg-earth-800/95 dark:ring-white/10 absolute top-[calc(100%+0.5rem)] right-0 z-50 flex min-w-44 flex-col gap-1 rounded-xl p-1.5 opacity-0 shadow-xl ring-1 backdrop-blur-md"
+        class="lang-menu-panel bg-base/95 ring-earth-900/10 dark:bg-earth-800/95 absolute top-[calc(100%+0.5rem)] right-0 z-50 flex min-w-44 flex-col gap-1 rounded-xl p-1.5 opacity-0 shadow-xl ring-1 backdrop-blur-md dark:ring-white/10"
     >
         {
             locales.map((locale) => {
@@ -42,9 +42,9 @@ const locales = [
                             currentLocale === locale.code &&
                                 "bg-primary/10 text-primary dark:text-white",
                         ]}
-                        aria-current={currentLocale === locale.code
-                            ? "page"
-                            : undefined}
+                        aria-current={
+                            currentLocale === locale.code ? "page" : undefined
+                        }
                     >
                         <span class="flex items-center gap-2">
                             <span>{locale.flag}</span>
@@ -61,7 +61,9 @@ const locales = [
     .lang-menu .lang-menu-panel {
         pointer-events: none;
         transform: translateY(-6px);
-        transition: opacity 0.16s ease, transform 0.16s ease;
+        transition:
+            opacity 0.16s ease,
+            transform 0.16s ease;
     }
 
     .lang-menu[open] .lang-menu-panel {

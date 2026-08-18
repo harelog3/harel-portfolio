@@ -22,12 +22,11 @@ const links = [
 
 const isActive = (href: string) => {
     if (href === "/") return normalizedPath === "/";
-    return (
-        normalizedPath === href || normalizedPath.startsWith(`${href}/`)
-    );
+    return normalizedPath === href || normalizedPath.startsWith(`${href}/`);
 };
 
-const currentTitle = links.find((link) => isActive(link.href))?.label ?? t("nav.home");
+const currentTitle =
+    links.find((link) => isActive(link.href))?.label ?? t("nav.home");
 ---
 
 <nav

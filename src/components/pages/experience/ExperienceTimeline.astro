@@ -36,7 +36,11 @@ const { entries, ariaLabel } = Astro.props as Props;
     ></span>
 
     <ol class="experience-timeline-list relative flex flex-col gap-8 sm:gap-10">
-        {entries.map((entry, index) => <ExperienceTimelineItem entry={entry} index={index} />)}
+        {
+            entries.map((entry, index) => (
+                <ExperienceTimelineItem entry={entry} index={index} />
+            ))
+        }
     </ol>
 </section>
 
@@ -54,7 +58,8 @@ const { entries, ariaLabel } = Astro.props as Props;
     }
 
     .experience-timeline-rail {
-        animation: experience-rail-draw 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: experience-rail-draw 0.95s cubic-bezier(0.22, 1, 0.36, 1)
+            both;
         animation-delay: 0.34s;
         transform-origin: top center;
     }

@@ -1,16 +1,19 @@
 // @ts-check
-import tailwindcss from '@tailwindcss/vite';
-import { defineConfig } from 'astro/config';
+import tailwindcss from "@tailwindcss/vite";
+import { defineConfig } from "astro/config";
 
-import vue from '@astrojs/vue';
+import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
     vite: {
-        plugins: [tailwindcss()]
+        resolve: {
+            tsconfigPaths: false,
+        },
+        plugins: [tailwindcss()],
     },
     i18n: {
         locales: ["es", "en"],
-        defaultLocale: "en"
-    } 
+        defaultLocale: "en",
+    },
 });

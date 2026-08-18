@@ -19,12 +19,11 @@ const {
     logoSrc,
     logoAlt = "",
     loading = "eager",
-} =
-    Astro.props as Props;
+} = Astro.props as Props;
 ---
 
 <article
-    class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 flex h-full flex-col gap-5 rounded-3xl p-6 ring-1 transition-all duration-200 hover:-translate-y-0.5 hover:ring-primary/35 sm:p-7"
+    class="bg-earth-50/45 dark:bg-earth-900/35 ring-earth-200 dark:ring-earth-800 hover:ring-primary/35 flex h-full flex-col gap-5 rounded-3xl p-6 ring-1 transition-all duration-200 hover:-translate-y-0.5 sm:p-7"
 >
     <div class="flex items-start justify-between gap-3">
         <div
@@ -43,9 +42,9 @@ const {
                         loading={loading}
                     />
                 ) : (
-                    <span class="text-[10px] font-semibold tracking-[0.15em] uppercase"
-                        >Logo</span
-                    >
+                    <span class="text-[10px] font-semibold tracking-[0.15em] uppercase">
+                        Logo
+                    </span>
                 )
             }
         </div>
@@ -57,10 +56,14 @@ const {
     </div>
 
     <div class="space-y-2.5">
-        <h3 class="text-earth-900 dark:text-earth-50 text-3xl leading-none font-bold tracking-tight">
+        <h3
+            class="text-earth-900 dark:text-earth-50 text-3xl leading-none font-bold tracking-tight"
+        >
             {name}
         </h3>
-        <p class="text-earth-700 dark:text-earth-100/75 text-sm leading-relaxed">
+        <p
+            class="text-earth-700 dark:text-earth-100/75 text-sm leading-relaxed"
+        >
             {description}
         </p>
     </div>
@@ -69,9 +72,7 @@ const {
         tags.length > 0 && (
             <div class="mt-auto flex flex-wrap gap-2 pt-1">
                 {tags.map((tag) => (
-                    <span
-                        class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-2 py-1 text-[10px] font-semibold tracking-tight"
-                    >
+                    <span class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-2 py-1 text-[10px] font-semibold tracking-tight">
                         {tag}
                     </span>
                 ))}

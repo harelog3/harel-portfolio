@@ -56,7 +56,10 @@ const contentClass = [
         <BriefcaseBusinessIcon class="h-4 w-4" />
     </div>
 
-    <article class={contentClass} aria-labelledby={`experience-${entry.id}-title`}>
+    <article
+        class={contentClass}
+        aria-labelledby={`experience-${entry.id}-title`}
+    >
         <div
             class:list={[
                 "flex flex-wrap items-center gap-2",
@@ -82,7 +85,9 @@ const contentClass = [
             >
                 {entry.role}
             </h3>
-            <p class="text-earth-700 dark:text-earth-200 text-sm font-semibold tracking-tight">
+            <p
+                class="text-earth-700 dark:text-earth-200 text-sm font-semibold tracking-tight"
+            >
                 {entry.company}
             </p>
             <time
@@ -93,7 +98,9 @@ const contentClass = [
             </time>
         </div>
 
-        <p class="text-earth-700 dark:text-earth-100/80 text-sm leading-relaxed">
+        <p
+            class="text-earth-700 dark:text-earth-100/80 text-sm leading-relaxed"
+        >
             {entry.summary}
         </p>
 
@@ -101,7 +108,9 @@ const contentClass = [
             {
                 entry.highlights.map((highlight) => (
                     <li class="text-earth-700 dark:text-earth-200 flex gap-2 leading-relaxed">
-                        <span class="text-primary mt-[0.2rem] shrink-0">&gt;&gt;</span>
+                        <span class="text-primary mt-[0.2rem] shrink-0">
+                            &gt;&gt;
+                        </span>
                         <span>{highlight}</span>
                     </li>
                 ))
@@ -117,9 +126,7 @@ const contentClass = [
                     ]}
                 >
                     {entry.technologies.map((technology) => (
-                        <span
-                            class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-2 py-1 text-[10px] font-semibold"
-                        >
+                        <span class="bg-earth-100 text-earth-700 dark:bg-earth-800 dark:text-earth-200 rounded-md px-2 py-1 text-[10px] font-semibold">
                             {technology}
                         </span>
                     ))}
@@ -176,19 +183,22 @@ const contentClass = [
         0% {
             opacity: 0;
             transform: scale(0.75);
-            box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 0%, transparent);
+            box-shadow: 0 0 0 0
+                color-mix(in srgb, var(--color-primary) 0%, transparent);
         }
 
         70% {
             opacity: 1;
             transform: scale(1.06);
-            box-shadow: 0 0 0 10px color-mix(in srgb, var(--color-primary) 12%, transparent);
+            box-shadow: 0 0 0 10px
+                color-mix(in srgb, var(--color-primary) 12%, transparent);
         }
 
         100% {
             opacity: 1;
             transform: scale(1);
-            box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-primary) 0%, transparent);
+            box-shadow: 0 0 0 0
+                color-mix(in srgb, var(--color-primary) 0%, transparent);
         }
     }
 
@@ -199,8 +209,8 @@ const contentClass = [
 
     .experience-card {
         opacity: 0;
-        animation: experience-card-enter-mobile 0.72s cubic-bezier(0.22, 1, 0.36, 1)
-            both;
+        animation: experience-card-enter-mobile 0.72s
+            cubic-bezier(0.22, 1, 0.36, 1) both;
         animation-delay: calc(0.34s + (var(--index, 0) * 0.1s));
     }
 
