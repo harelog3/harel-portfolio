@@ -10,12 +10,12 @@
     },
     "dependencies": {
         "@astrojs/vue": "^6.0.1",
-        "@fontsource-variable/fira-code": "^5.2.7",
-        "@fontsource/inter": "^5.2.8",
+        "@fontsource-variable/fira-code": "^5.3.0",
+        "@fontsource/inter": "^5.3.0",
         "@lucide/astro": "^0.575.0",
-        "@tailwindcss/vite": "^4.3.1",
-        "astro": "^6.4.7",
-        "tailwindcss": "^4.3.1"
+        "@tailwindcss/vite": "^4.3.3",
+        "astro": "^6.4.8",
+        "tailwindcss": "^4.3.3"
     },
     "devDependencies": {
         "prettier": "3.8.1",
